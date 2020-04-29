@@ -10,7 +10,7 @@ class Asteroid extends Component {
         this.asteroidID = props.location.state.aseroidID;
         this.state={
           asteroidData: {},
-          isDataFound: false
+          isDataFound: true
         }
     }
     
@@ -39,14 +39,19 @@ render(){
     const localData = this.state.asteroidData;
     console.log(localData);
     return (
-        <div>
+        <div className="container">
             <h2>Asteroid Details</h2>
+            {!!localData.id ? <div>
                <p><b>Asteroid Name: </b>{localData.name}</p>
                <p><b>JPL URL: </b>{localData.nasa_jpl_url}</p>
                <p><b>Is Potentially Hazardous Asteroid: </b>
                {localData.is_potentially_hazardous_asteroid ? 'TRUE' : 'FALSE'}
                </p>
-
+            </div> : this.state.isDataFound ? <h3>Loading Data.....</h3> : 
+            <div class="alert alert-info">
+                <strong>Information!</strong> No Data Found for this <b>{this.props.location.state.aseroidID} </b> ID, you have entered.
+            </div>
+           }
         </div>
       );
 }
