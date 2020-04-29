@@ -25,7 +25,6 @@ class Home extends Component {
                 isValid: false
             });
         }
-        console.log(e.target.value);
 
     }
     onSubmitHandler = () => {

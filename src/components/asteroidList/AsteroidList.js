@@ -6,7 +6,6 @@ const API_KEY= 'Bdv7Cvw5rLNdMJYSFbfnqif74KSpzW2PTBWp1bzf';
 class Asteroid extends Component {
     constructor(props){
         super(props);
-        console.log(props.location.state);
         this.asteroidID = props.location.state.aseroidID;
         this.state={
           asteroidData: {},
@@ -18,7 +17,6 @@ class Asteroid extends Component {
         const URL = 'https://api.nasa.gov/neo/rest/v1/neo/'+this.asteroidID+'?api_key='+ API_KEY;
         axios.get(URL).then(response=>{
           if(response.status === 200){
-            console.log(response);
             this.setState({
                 isDataFound: true,
                 asteroidData: response.data
@@ -26,7 +24,6 @@ class Asteroid extends Component {
           }
 
         }, error=>{
-            console.log(error, 'no data found');
             this.setState({
                 isDataFound: false
             });
@@ -37,7 +34,6 @@ class Asteroid extends Component {
 render(){
 
     const localData = this.state.asteroidData;
-    console.log(localData);
     return (
         <div className="container">
             <h2>Asteroid Details</h2>
